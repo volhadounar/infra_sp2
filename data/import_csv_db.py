@@ -1,13 +1,13 @@
-import sqlite3
 import csv
 import os
+import sqlite3
 
 
-os.chdir('C:\OLGA\Python CS50\import_csv_db')
+os.chdir('./data/import_csv_db')
 
-#currentDir = os.getcwd()
-#currentFileCSV = currentDir +"\\" + csvFilename
-#print(currentFileCSV)
+# currentDir = os.getcwd()
+# currentFileCSV = currentDir +"\\" + csvFilename
+# print(currentFileCSV)
 
 conn = sqlite3.connect('db.sqlite3')
 c = conn.cursor()
@@ -31,8 +31,13 @@ with open(csvFilename, "r", encoding='utf-8') as file:
         desc = row['description']
         first_name = row['first_name']
         last_name = row['last_name']
-        c.execute("INSERT INTO  auth_user_customuser(username, email, role, bio, first_name, last_name, password, is_superuser, is_staff, is_active, date_joined) \
-                  VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (username, email, role, desc, first_name, last_name, '111', 0, 0, 1, 0))
+        c.execute("INSERT INTO  auth_user_customuser \
+                  (username, email, role, bio, first_name, \
+                  last_name, password, is_superuser, is_staff,\
+                  is_active, date_joined) \
+                  VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                  (username, email, role, desc,
+                   first_name, last_name, '111', 0, 0, 1, 0))
 
 
 csvFilename = 'titles.csv'
@@ -57,8 +62,10 @@ with open(csvFilename, "r", encoding='utf-8') as file:
         author = row['author']
         score = row['score']
         pub_date = row['pub_date']
-        c.execute("INSERT INTO  api_review(title_id, text, author_id, score, pub_date) \
-                  VALUES(?, ?, ?, ?, ?)", (title, text, author, score, pub_date))
+        c.execute("INSERT INTO api_review(title_id, \
+                   text, author_id, score, pub_date) \
+                   VALUES(?, ?, ?, ?, ?)",
+                  (title, text, author, score, pub_date))
 
 csvFilename = 'genre_title.csv'
 with open(csvFilename, "r") as file:
