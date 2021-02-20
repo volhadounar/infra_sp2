@@ -19,3 +19,12 @@ Getting Started
     7.  ``python3 manage.py runserver`` -- Running localy
     8.  And visit http://127.0.0.1:8000
     9.  http://127.0.0.1:8000/admin visit admin page to create items as admin
+
+2. Build docker image:
+    1. ``cd api_yamdb``
+    2. ``docker-compose up``
+    3. open another command window
+    4. ``docker-compose run web python manage.py migrate``
+    5. ``docker exec -it container_id python manage.py createsuperuser``
+    6. http://127.0.0.1:8000/admin visit admin page to create items as admin
+    7. ``docker exec -it container_id python manage.py dumpdata > fixtures.json`` -- upload fixtures file with creates data
