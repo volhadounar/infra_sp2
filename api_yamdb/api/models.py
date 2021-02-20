@@ -109,7 +109,7 @@ class Review(models.Model):
             MinValueValidator(1),
             MaxValueValidator(10),
         ]
-        )
+    )
 
     class Meta:
         ordering = ['-pub_date']

@@ -1,7 +1,5 @@
 from rest_framework import permissions
 
-from auth_user.models import CustomUser
-
 
 class IsAdminOrStaff(permissions.BasePermission):
     """Права роли admin или staff"""

@@ -1,11 +1,3 @@
-from django.contrib.auth import get_user_model
-from django.db.models import Avg
-from django_filters.rest_framework import DjangoFilterBackend
-
-from rest_framework import filters, generics
-from rest_framework.decorators import action
-from rest_framework.viewsets import ModelViewSet
-
 from api.filters import TitleFilter
 from api.mixins_viewset import WithNoRetreive
 from api.models import Category, Genre, Review, Title
@@ -18,9 +10,19 @@ from api.serializers import (
     CommentSerializer,
     GenreSerializer,
     ReviewSerializer,
-    TitleSerializer,
     TitleReadSerializer,
+    TitleSerializer,
 )
+
+from django.contrib.auth import get_user_model
+from django.db.models import Avg
+
+from django_filters.rest_framework import DjangoFilterBackend
+
+from rest_framework import filters, generics
+from rest_framework.decorators import action
+from rest_framework.viewsets import ModelViewSet
+
 
 User = get_user_model()
 

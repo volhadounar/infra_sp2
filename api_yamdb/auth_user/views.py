@@ -41,7 +41,7 @@ def api_send_mail(request):
     to = EmailSerializer.validated_data['email']
     username = to.split('@')[0]
     user, created = User.objects.get_or_create(email=to,
-                                                username=username)
+                                               username=username)
     code = default_token_generator.make_token(user)
     send_msg(to, code)
     return Response(email_serializer.data, status=status.HTTP_200_OK)
@@ -59,7 +59,7 @@ class LoginView(APIView):
         username = email.split('@')[0]
         user = get_object_or_404(User, email=email,
                                  username=username)
-        
+
         if not default_token_generator.check_token(user, confirmation_code):
             exceptions.AuthenticationFailed(
                 'confirmation_code is not valid')
