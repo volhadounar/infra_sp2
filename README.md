@@ -4,15 +4,15 @@ Service Yamdb
 A service – databases of reviewing films, books, music and REST API for it( is made in a team with my
 colleagues)
 Tools:  Django Rest Framework, ModelViewSet, routers, JSON Web Token, Authorization, Users Roles,
-Postman.
+Postman, Postgresql
 
 Getting Started
 ===============
 
 1.  You can build it in steps:
     1.  ``cd ...wherever...``
-    2.  ``git clone https://github.com/volhadounar/api_yamdb.git``
-    3.  ``cd api_yamdb``
+    2.  ``git clone https://github.com/volhadounar/infra_sp2.git``
+    3.  ``cd infra_sp2``
     4.  ``pip install -r requirements.txt``  -- Should install everything you need
     5.  ``python3 manage.py migrate`` -- Reads all the migrations folders in the application folders and creates / evolves the tables in the database
     6.  ``python3 manage.py createsuperuser`` 
@@ -21,7 +21,7 @@ Getting Started
     9.  http://127.0.0.1:8000/admin visit admin page to create items as admin
 
 2. Build docker image:
-    1. ``cd api_yamdb``
+    1. ``cd infra_sp2``
     2. ``docker-compose up``
     3. open another command window
     4. ``docker-compose run web python manage.py migrate``
