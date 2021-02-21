@@ -1,10 +1,12 @@
 Service Yamdb
 =================================
 
-A service – databases of reviewing films, books, music and REST API for it( is made in a team with my
-colleagues)
-Tools:  Django Rest Framework, ModelViewSet, routers, JSON Web Token, Authorization, Users Roles,
-Postman, Postgresql
+In a team with my colleagues we have written service – databases of reviewing films, books, music and
+REST API for it. My role included registration and authentication system, access rights, work with a token, e-mail confirmation system, fields.
+
+
+Tech stack: Python3, Django, HTML, HTTP, HTTPS, PostgreSQL, Git, Linux, Visual Studio
+Code, Nginx, Docker.
 
 Getting Started
 ===============
@@ -27,4 +29,4 @@ Getting Started
     4. ``docker-compose run web python manage.py migrate``
     5. ``docker exec -it container_id python manage.py createsuperuser``
     6. http://127.0.0.1:8000/admin visit admin page to create items as admin
-    7. ``docker exec -it container_id python manage.py dumpdata > fixtures.json`` -- upload fixtures file with creates data
+    7. ``docker exec -it container_id python manage.py dumpdata > fixtures.json`` -- upload fixtures file with web-service' data
