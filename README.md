@@ -5,28 +5,27 @@ In a team with my colleagues we have written service – databases of reviewing 
 REST API for it. My role included registration and authentication system, access rights, work with a token, e-mail confirmation system, fields.
 
 
-Tech stack: Python3, Django, HTML, HTTP, HTTPS, PostgreSQL, Git, Linux, Visual Studio
-Code, Nginx, Docker.
+Tech stack: Python3, Django Rest Framework, HTML, HTTP, HTTPS, PostgreSQL, Gunicorn, Docker, Postman, Linux, Visual Studio Code.
 
 Getting Started
 ===============
 
-1.  You can build it in steps:
-    1.  ``cd ...wherever...``
-    2.  ``git clone https://github.com/volhadounar/infra_sp2.git``
-    3.  ``cd infra_sp2``
-    4.  ``pip install -r requirements.txt``  -- Should install everything you need
-    5.  ``python3 manage.py migrate`` -- Reads all the migrations folders in the application folders and creates / evolves the tables in the database
-    6.  ``python3 manage.py createsuperuser`` 
-    7.  ``python3 manage.py runserver`` -- Running localy
-    8.  And visit http://127.0.0.1:8000
-    9.  http://127.0.0.1:8000/admin visit admin page to create items as admin
-
-2. Build docker image:
-    1. ``cd infra_sp2``
-    2. ``docker-compose up``
-    3. open another command window
-    4. ``docker-compose run web python manage.py migrate``
-    5. ``docker exec -it container_id python manage.py createsuperuser``
-    6. http://127.0.0.1:8000/admin visit admin page to create items as admin
-    7. ``docker exec -it container_id python manage.py dumpdata > fixtures.json`` -- upload fixtures file with web-service' data
+1. You can build it in steps:
+    1. ``cd ...wherever...``
+    2. ``git clone https://github.com/volhadounar/infra_sp2.git``
+    3. ``cd infra_sp2``
+    4. ``docker-compose up``
+    5. Open another command window.
+    6. ``docker-compose run web python manage.py migrate`` -- Reads all the migrations folders in the application folders and creates / evolves the tables in the database
+    7. ``docker-compose exec web python manage.py createsuperuser``
+    8. ``docker-compose exec web python manage.py loaddata fixtures.json`` -- Uploads fixtures file with web-service' data
+2. The usage:
+    1. There you can read the documentation: http://localhost:8000/redoc/
+    2. http://localhost:8000/admin -- Visit admin page to create items as admin
+    3. Try e-mail confirmation system:
+        - In Postman make put request with body {"email":"some_email"} using:
+        http://localhost:8000/api/v1/auth/email/
+        - Find confirmation code in the folder 'sent_emails'. Use it in the next step.
+        - Make the put request with body {"email":"some_mail", "confirmation_code": "some_confcode_from_email"}: http://localhost:8000/api/v1/auth/token/
+        - Input token in the request headers: `Authorization: Bearer <token>`
+        - http://localhost:8000/api/v1/users/me/ -- Fetch current profile data

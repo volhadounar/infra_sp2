@@ -38,7 +38,7 @@ def send_msg(email, code):
 def api_send_mail(request):
     email_serializer = EmailSerializer(data=request.data)
     email_serializer.is_valid(raise_exception=True)
-    to = EmailSerializer.validated_data['email']
+    to = email_serializer.validated_data['email']
     username = to.split('@')[0]
     user, created = User.objects.get_or_create(email=to,
                                                username=username)
